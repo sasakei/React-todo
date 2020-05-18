@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
+import ToDoItem from './components/ToDoItem';
 class App extends Component {
+  
  constructor() {
    super();
    this.state = {
@@ -39,12 +41,13 @@ class App extends Component {
    return (
      <div className="App">
        <ul>
-         {this.state.todos.map((item) => {
+         {this.state.todos.map((item, key) => {
            return(
-           <li>
-            <span>{item.text}</span>
-            <span onClick={this.deleteTodo.bind(this, item)}>[×]</span>
-           </li>
+             <ToDoItem
+              key={key}
+              text={item.text}
+              deleteTodo={this.deleteTodo.bind(this, item)}
+             />
            )
          })}
        </ul>
@@ -55,10 +58,6 @@ class App extends Component {
      </div>
    );
  }
- 
-
- 
-
  
 }
 
